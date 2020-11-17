@@ -16,7 +16,7 @@ public class Defragment {
         return array;
     }
 
-    public static String[] swap(String[] array, int nullIndex, int notNullIndex){
+    public static String[] swap(String[] array, int nullIndex, int notNullIndex) {
         array[nullIndex] = array[notNullIndex];
         array[notNullIndex] = null;
         return array;
