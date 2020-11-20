@@ -24,4 +24,22 @@ public class MaxTest {
         int result = Max.max(9, 9);
         assertThat(result, is(9));
     }
+
+    @Test
+    public void whenMax5To6To7() {
+        int result = Max.max(5, 6, 7);
+        assertThat(result, is(7));
+    }
+
+    @Test
+    public void whenMax5To0To34To5() {
+        int result = Max.max(5, 0, 34, 5);
+        assertThat(result, is(34));
+    }
+
+    @Test
+    public void whenMax0To0To0To0() {
+        int result = Max.max(0, 0, 0, 0);
+        assertThat(result, is(0));
+    }
 }
