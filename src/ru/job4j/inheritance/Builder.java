@@ -5,11 +5,13 @@ public class Builder extends Engineer {
     private String nameOfFirm;
     private int buildFin;
 
-    public Builder(String nameOfFirm) {
+    public Builder(String name, String surname, String education, String birthday, String nameOfFirm) {
+        super(name, surname, education, birthday);
         this.nameOfFirm = nameOfFirm;
     }
 
-    public Builder(String nameOfFirm, int buildFin) {
+    public Builder(String name, String surname, String education, String birthday, String nameOfFirm, int buildFin) {
+        super(name, surname, education, birthday);
         this.nameOfFirm = nameOfFirm;
         this.buildFin = buildFin;
     }

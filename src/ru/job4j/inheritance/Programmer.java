@@ -5,7 +5,8 @@ public class Programmer extends Engineer {
     private boolean isMakingProg;
     private boolean isFixingCode;
 
-    public Programmer(boolean isFixingCode, boolean isMakingProg) {
+    public Programmer(String name, String surname, String education, String birthday, boolean isFixingCode, boolean isMakingProg) {
+        super(name, surname, education, birthday);
         this.isFixingCode = isFixingCode;
         this.isMakingProg = isMakingProg;
     }
