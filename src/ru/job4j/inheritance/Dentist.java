@@ -1,6 +1,6 @@
 package ru.job4j.inheritance;
 
-public class Dentist {
+public class Dentist extends Doctor {
 
     private int teeth;
 

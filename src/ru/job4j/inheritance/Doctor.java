@@ -5,10 +5,6 @@ public class Doctor extends Profession {
     private int savedMen;
     private double experience;
 
-    public Doctor(int experience) {
-        this.experience = experience;
-    }
-
     public double getExperience() {
         return experience;
     }
