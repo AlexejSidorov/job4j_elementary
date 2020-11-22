@@ -9,8 +9,10 @@ public class College {
         student.setAdmissionDate(new Date("06/26/2006"));
         student.setFullName("Sidorov Aleksey");
         student.setNumOfGroup(6);
-        System.out.println("Student name: " + student.getFullName() + "\n"
-                + "Number of group: " + student.getNumOfGroup() + "\n"
+        System.out.println("Student name: " + student.getFullName()
+                + System.lineSeparator()
+                + "Number of group: " + student.getNumOfGroup()
+                + System.lineSeparator()
                 + "Admission date: " + student.getAdmission());
     }
 }
