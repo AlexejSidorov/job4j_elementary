@@ -10,7 +10,7 @@ public class DepDescComp implements Comparator<String> {
         if (o1Part.equals(o2Part)) {
             return o1.compareTo(o2);
         }
-        return o2.compareTo(o1);
+        return o2Part.compareTo(o1Part);
     }
 
     private String getFirstPart(String o) {
