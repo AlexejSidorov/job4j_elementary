@@ -15,6 +15,10 @@ public class LambdaUsage {
         );
 
         Comparator<Attachment> comparator = (left, right) -> {
+            System.out.println(new StringBuilder("compare- ")
+            .append(right.getName())
+            .append(" : ")
+            .append(left.getName()));
             return right.getName().compareTo(left.getName());
         };
 
