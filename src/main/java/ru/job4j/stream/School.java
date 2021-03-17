@@ -13,8 +13,8 @@ public class School {
     }
 
     public Map<String, Student> collectToMap(List<Student> students) {
-        Map<String, Student> studentMap = students.stream()
+        return  students.stream()
                 .collect(Collectors.toMap(Student::getSurname, s -> s, (e, r) -> r));
-        return studentMap;
+
     }
 }
