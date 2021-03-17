@@ -38,7 +38,7 @@ public class BankService {
      * нет, то он добавляется
      *
      * @param passport пасспорт объекта {@link User}
-     * @param account объект класса {@link Account}
+     * @param account  объект класса {@link Account}
      */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
@@ -60,12 +60,11 @@ public class BankService {
      * @return user - обьект класса {@link User}, или null
      */
     public User findByPassport(String passport) {
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                return user;
-            }
-        }
-        return null;
+        return users.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -76,18 +75,17 @@ public class BankService {
      * Если ключ {@link User} или обьект {@link Account} не существуют в {@link BankService#users} -
      * возвращается null
      *
-     * @param passport паспорт (идентификатор) объекта {@link User}
+     * @param passport  паспорт (идентификатор) объекта {@link User}
      * @param requisite идентификатор объекта {@link Account}
      * @return account объект {@link Account}, или null
      */
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
-            for (Account account : users.get(user)) {
-                if (account.getRequisite().equals(requisite)) {
-                    return account;
-                }
-            }
+            return users.get(user).stream()
+                    .filter(acc -> acc.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
@@ -102,11 +100,11 @@ public class BankService {
      * Если один из {@link User} не найден, или один из аккаунтов {@link Account} не найден,
      * или сумма перевода больше баланса первого аккаунта, то перевод не осуществляется и возвращается false.
      *
-     * @param srcPassport паспорт объекта {@link User} с которого спишут деньги
-     * @param srcRequisite идентификатор объекта {@link Account} с которого спишут деньги
-     * @param destPassport паспорт объекта {@link User} на который зачислят деньги
+     * @param srcPassport   паспорт объекта {@link User} с которого спишут деньги
+     * @param srcRequisite  идентификатор объекта {@link Account} с которого спишут деньги
+     * @param destPassport  паспорт объекта {@link User} на который зачислят деньги
      * @param destRequisite идентификатор объекта {@link Account} на который зачислят деньги
-     * @param amount колличество списываемых/зачисляемых денег
+     * @param amount        колличество списываемых/зачисляемых денег
      * @return boolean true - если операция прошла успешно, иначе - false
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
