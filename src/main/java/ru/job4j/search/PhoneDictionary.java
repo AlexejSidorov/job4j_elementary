@@ -23,12 +23,12 @@ public class PhoneDictionary {
         Predicate<Person> predicateAddress = (p) -> {
             return p.getAddress().equals(key);
         };
-        Predicate<Person> combine = predicateName.
+        var combine = predicateName.
                 or(predicateSurname).
                 or(predicatePhone).
                 or(predicateAddress);
         ArrayList<Person> result = new ArrayList<>();
-        for (Person person : persons) {
+        for (var person : persons) {
             if (combine.test(person)) {
                 result.add(person);
             }
