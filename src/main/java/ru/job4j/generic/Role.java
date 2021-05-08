@@ -2,7 +2,7 @@ package ru.job4j.generic;
 
 public class Role extends Base {
 
-    public Role(String character) {
-        super(character);
+    public Role(String id) {
+        super(id);
     }
 }
