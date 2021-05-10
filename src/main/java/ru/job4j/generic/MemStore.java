@@ -40,9 +40,11 @@ public final class MemStore<T extends Base> implements Store<T> {
     }
 
     private int getIndex(String id) {
-        T o = mem.stream()
-                .takeWhile(t -> t.getId().equals(id))
-                .findFirst().orElse(null);
-        return o != null ? mem.indexOf(o) : -1;
+        for (T o : mem) {
+            if (o.getId().equals(id)) {
+                return mem.indexOf(o);
+            }
+        }
+        return -1;
     }
 }
