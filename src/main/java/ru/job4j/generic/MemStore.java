@@ -18,8 +18,7 @@ public final class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.remove(index);
-        mem.add(index, model);
+        mem.set(index, model);
         return true;
     }
 
@@ -40,10 +39,12 @@ public final class MemStore<T extends Base> implements Store<T> {
     }
 
     private int getIndex(String id) {
+        int count = 0;
         for (T o : mem) {
             if (o.getId().equals(id)) {
-                return mem.indexOf(o);
+                return count;
             }
+            count++;
         }
         return -1;
     }
