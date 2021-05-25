@@ -7,23 +7,30 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     private int count = 0;
+    private boolean isPushLastOp = true;
 
     public T poll() {
         T objIn = null;
-        for (int i = 0; i < count; i++) {
-            objIn = in.pop();
-            out.push(objIn);
+        if (isPushLastOp) {
+            for (int i = 0; i < count; i++) {
+                objIn = in.pop();
+                out.push(objIn);
+            }
         }
+        isPushLastOp = false;
         out.pop();
-        for (int i = 0; i < count - 1; i++) {
-            T objOut = out.pop();
-            in.push(objOut);
-        }
         count--;
         return objIn;
     }
 
     public void push(T value) {
+        if (!isPushLastOp) {
+            for (int i = 0; i < count; i++) {
+                T objOut = out.pop();
+                in.push(objOut);
+            }
+        }
+        isPushLastOp = true;
         in.push(value);
         count++;
     }
