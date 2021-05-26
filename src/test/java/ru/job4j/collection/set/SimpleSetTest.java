@@ -1,0 +1,57 @@
+package ru.job4j.collection.set;
+
+import org.junit.Test;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.*;
+
+public class SimpleSetTest {
+
+    @Test
+    public void whenAddNonNull() {
+        Set<Integer> set = new SimpleSet<>();
+        assertTrue(set.add(1));
+        assertTrue(set.contains(1));
+        assertFalse(set.add(1));
+    }
+
+    @Test
+    public void whenAddNull() {
+        Set<Integer> set = new SimpleSet<>();
+        assertTrue(set.add(null));
+        assertTrue(set.contains(null));
+        assertFalse(set.add(null));
+    }
+
+    @Test
+    public void whenAddNormal() {
+        Set<Integer> set = new SimpleSet<>();
+        assertTrue(set.add(1));
+        assertTrue(set.contains(1));
+        assertFalse(set.add(1));
+    }
+
+    @Test
+    public void whenAddAndGetItr() {
+        Set<Integer> set = new SimpleSet<>();
+        assertTrue(set.add(1));
+        assertTrue(set.add(2));
+        assertTrue(set.add(3));
+        Iterator<Integer> itr = set.iterator();
+        assertThat(itr.next(), equalTo(1));
+        assertThat(itr.next(), equalTo(2));
+        assertThat(itr.next(), equalTo(3));
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void whenAddAndGetNoSuchElement() {
+        Set<Integer> set = new SimpleSet<>();
+        set.add(1);
+        Iterator<Integer> itr = set.iterator();
+        itr.next();
+        itr.next();
+    }
+}
