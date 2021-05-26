@@ -6,31 +6,27 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
 
-    private int count = 0;
-    private boolean isPushLastOp = true;
+    private int countIn = 0;
+    private int countOut = 0;
 
     public T poll() {
-        if (isPushLastOp) {
-          reFillStack(in, out);
+        if (countOut == 0) {
+            countOut = countIn;
+            reFillStack(in, out);
         }
-        isPushLastOp = false;
-        count--;
+        countOut--;
         return out.pop();
     }
 
     public void push(T value) {
-        if (!isPushLastOp) {
-         reFillStack(out, in);
-        }
-        isPushLastOp = true;
         in.push(value);
-        count++;
+        countIn++;
     }
 
     private void reFillStack(SimpleStack<T> first, SimpleStack<T> second) {
-        for (int i = 0; i < count; i++) {
-            T objOut = first.pop();
-            second.push(objOut);
+        for (; countIn > 0; countIn--) {
+            T obj = first.pop();
+            second.push(obj);
         }
     }
 }
